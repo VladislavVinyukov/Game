@@ -1,0 +1,247 @@
+﻿<Window x:Class="exerWpf.HelpWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStyle="None"
+        Title="MainWindow" Height="398.225" Width="836.529">
+    <Window.Resources>
+        <Style x:Key="MyFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Control}">
+                        <Grid Margin="3 2">
+                            <Rectangle Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                            <Border Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ShadowStyle">
+            <Setter Property="Control.Foreground" Value="LightGray" />
+        </Style>
+
+        <Style x:Key="InformButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontFamily" Value="Verdana"/>
+            <Setter Property="FontSize" Value="11px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisual}" />
+            <Setter Property="Background" >
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                        <GradientStop Color="#FFFFD190" Offset="0.2"/>
+                        <GradientStop Color="Orange" Offset="0.85"/>
+                        <GradientStop Color="#FFFFD190" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" 
+        				BorderThickness="1"
+        				Padding="4,2" 
+        				BorderBrush="DarkGray" 
+        				CornerRadius="3" 
+        				Background="{TemplateBinding Background}">
+                            <Grid >
+                                <ContentPresenter HorizontalAlignment="Center" 
+        	                           VerticalAlignment="Center" Name="contentShadow" 
+        					Style="{StaticResource ShadowStyle}">
+                                    <ContentPresenter.RenderTransform>
+                                        <TranslateTransform X="1.0" Y="1.0" />
+                                    </ContentPresenter.RenderTransform>
+                                </ContentPresenter>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                                <Setter Property="Foreground" Value="#FF4788c8" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" >
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
+                                            <GradientStop Color="#FFFFD190" Offset="0.35"/>
+                                            <GradientStop Color="Orange" Offset="0.95"/>
+                                            <GradientStop Color="#FFFFD190" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter TargetName="content" Property="RenderTransform" >
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1.0" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsDefaulted" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderBrush" Value="#FF282828" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="r2d2" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Rectangle HorizontalAlignment="Left" Height="78" VerticalAlignment="Top" Width="68" Margin="20,10,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/r2d2-gif.gif"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="bb8" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Rectangle HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/bb82.gif" Stretch="UniformToFill"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="s3po" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Rectangle HorizontalAlignment="Left" Height="88" VerticalAlignment="Top" Width="100">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/s3pO.gif" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="box" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Rectangle HorizontalAlignment="Left" Height="96"  VerticalAlignment="Top" Width="109">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/box.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="benDark" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Rectangle HorizontalAlignment="Left" Height="117" VerticalAlignment="Top" Width="88" Margin="12,0,0,0">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/ben.png"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="dartV" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0*"/>
+                    <RowDefinition Height="0*"/>
+                </Grid.RowDefinitions>
+                <Rectangle HorizontalAlignment="Left" Height="Auto" Width="122" Grid.RowSpan="2" Margin="0,0,0,-115">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="hero/dart.gif"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </ControlTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <Border Width="auto" Height="398" BorderBrush="LimeGreen" BorderThickness="2"
+                CornerRadius="0,30,0,30" VerticalAlignment="Top">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#FF1A008D" Offset="0.0"></GradientStop>
+                            <GradientStop Color="#FF060605" Offset="0.5"></GradientStop>
+                        </GradientStopCollection>
+                    </GradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="titul" Padding="5" MouseLeftButtonDown="Titul_MouseLeftButtonDown"><Run/><InlineUIContainer>
+                        <ContentControl>
+                            <ContentControl.Background>
+                                <ImageBrush ImageSource="background/text.png"/>
+                            </ContentControl.Background>
+                            <Rectangle Height="25" Width="125">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="background/text.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                        </ContentControl>
+                    </InlineUIContainer></TextBlock>
+                <Grid Grid.Row="1">
+                    <Grid.Background>
+                        <ImageBrush ImageSource="background/9.jpg" Stretch="UniformToFill"/>
+                    </Grid.Background>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80*"/>
+                        <RowDefinition Height="98*"/>
+                        <RowDefinition Height="105*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="112*"/>
+                        <ColumnDefinition Width="115*"/>
+                        <ColumnDefinition Width="458*"/>
+                    </Grid.ColumnDefinitions>
+                    <ContentControl Content="ContentControl" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Template="{DynamicResource bb8}" Height="96" Width="130" Margin="97,0,0,0" Grid.ColumnSpan="2" RenderTransformOrigin="0.511,0.628" Grid.RowSpan="2"/>
+                    <ContentControl Content="ContentControl" Template="{DynamicResource r2d2}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="88" Width="112" Grid.Column="1" Grid.RowSpan="2"/>
+                    <ContentControl Content="ContentControl" HorizontalAlignment="Left" VerticalAlignment="Top" Template="{DynamicResource s3po}" Height="88" Width="100" Grid.RowSpan="2"/>
+                    <ContentControl Content="ContentControl" Grid.Column="1" HorizontalAlignment="Left" Margin="0,4,0,0" Grid.Row="1" VerticalAlignment="Top" Template="{DynamicResource box}" Height="106" Width="119">
+                        <ContentControl.Background>
+                            <ImageBrush ImageSource="hero/box.png" Stretch="UniformToFill"/>
+                        </ContentControl.Background>
+                    </ContentControl>
+                    <ContentControl Content="ContentControl" HorizontalAlignment="Left" Margin="-4,0,0,0" Grid.Row="2" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.3,0.375" Height="117" Template="{DynamicResource benDark}"/>
+                    <ContentControl Content="ContentControl" Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Template="{DynamicResource dartV}" Height="117" Width="122"/>
+                    <Label Content="" HorizontalAlignment="Left" Margin="10,21,0,0" Grid.Row="1" VerticalAlignment="Top" Height="69" Width="86">
+                        <Label.Background>
+                            <ImageBrush ImageSource="hero/helth_box.png"/>
+                        </Label.Background>
+                    </Label>
+                    <Label Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="21,5,0,0" Grid.Row="2" VerticalAlignment="Top" Height="112" Width="73" Foreground="{x:Null}">
+                        <Label.Background>
+                            <ImageBrush ImageSource="hero/shooter.png"/>
+                        </Label.Background>
+                    </Label>
+                    <Label Content="game robots" Grid.Column="3" HorizontalAlignment="Left" Margin="90,24,0,0" VerticalAlignment="Top" Foreground="#FF21E00E" FontSize="36" FontFamily="Showcard Gothic"/>
+                    <Label Content="box for robot" Grid.Column="3" HorizontalAlignment="Left" Margin="90,43,0,0" Grid.Row="1" VerticalAlignment="Top" Foreground="#FF21E00E" FontSize="30" FontFamily="Showcard Gothic"/>
+                    <Label Content="enemy of player" Grid.Column="3" HorizontalAlignment="Left" Margin="90,38,0,0" Grid.Row="2" VerticalAlignment="Top" Foreground="#FF21E00E" FontSize="30" FontFamily="Showcard Gothic" />
+                </Grid>
+                <TextBlock Padding="5" Grid.Row="2" HorizontalAlignment="Center"><InlineUIContainer>
+                        <Button Content="Start!" Width="94" Style="{DynamicResource InformButton}" FontFamily="Rockwell Extra Bold" Click="Button_Click" Height="26">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                    <GradientStop Color="#FF0F1B1D" Offset="0.2"/>
+                                    <GradientStop Color="#FF2300FF" Offset="0.855"/>
+                                    <GradientStop Color="#FF09BF00" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </InlineUIContainer></TextBlock>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
